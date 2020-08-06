@@ -1,0 +1,64 @@
+#container{
+    margin: auto;
+    margin-top: 100px;
+    background-color:ivory;
+    text-align: center;
+    width: 400px;
+    height: 600px;
+    border : 1px solid black;
+}
+
+#chatView{    
+    height: 90%;
+    overflow-y: scroll;
+}
+
+#chartForm{
+    height:10%;
+    text-align: center;
+}
+
+.msgLine{
+    margin:15px;
+    color: black;   
+    width: 90%;
+}
+
+.msgBox{
+    border : 1px solid black;
+    background: rgb(248, 248, 208);
+    padding: 2px 5px;
+    border-radius:10px;
+    display:inline-block;   
+}
+
+
+.msgLineIO{
+    margin:15px;
+    color: black;   
+    text-align: center;
+}
+
+.msgBoxIO{
+    /* border : 1px solid black; */
+    background: #ffcdd5;
+    padding: 2px 5px;
+    border-radius:10px;
+    display:inline-block;
+}
+
+
+
+
+#msg{
+    width:80%;
+    height: 32px;
+
+}
+
+#sendbtn{
+    width: 16%;
+    height: 32px;
+    background: black;
+    color: white;
+}
