@@ -12,4 +12,6 @@ npm install ejs --save
 
 npm install --save express-session
 
+npm install --save express-mysql-session
+
 
