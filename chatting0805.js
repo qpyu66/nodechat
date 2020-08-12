@@ -17,8 +17,8 @@ const { DH_UNABLE_TO_CHECK_GENERATOR } = require('constants')
 
 var socketList=[]
 
-app.use('/css', express.static('./static/css'))
-app.use('/js', express.static('./static/js'))
+// app.use('/css', express.static('./static/css'))
+// app.use('/js', express.static('./static/js'))
 
 
 // app.use('/', function(req, resq){
@@ -26,18 +26,18 @@ app.use('/js', express.static('./static/js'))
 // })
 
 /**Get 방식으로 / 경로에 접속하면 실행 됨 */
-app.get('/', function(request, response){
-    // console.log('유저가 / 으로 접속했다!')
-    // response.send('Hello Express Server !')
-    fs.readFile('./static/chatting0805.html', function(err, data){
-        if(err){
-            response.send('ERROR!')            
-        }else{
-            response.writeHead(200,{'Content-Type' : 'text/html'})
-            response.write(data)
-            response.end() /**write를 통해 응답할 경우 end사용해야함 */
-        }
-    })
+app.get('/chatting', function(request, response){
+    console.log('유저가 /chatting 으로 접속했다!')
+    response.send('Hello Express Server !')
+    // fs.readFile('/chatting0805.html', function(err, data){
+    //     if(err){
+    //         response.send('ERROR!')            
+    //     }else{
+    //         response.writeHead(200,{'Content-Type' : 'text/html'})
+    //         response.write(data)
+    //         response.end() /**write를 통해 응답할 경우 end사용해야함 */
+    //     }
+    // })
 })
 
 
@@ -77,11 +77,4 @@ io.on('connection',function(socket){
 })
 
 
-})
-
-
-
-/**server 8088 port listen */
-server.listen(8088,function(){
-    console.log("서버 실행 중... ")
 })
