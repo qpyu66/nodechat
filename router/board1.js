@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var mysql = require('mysql')
+var moment = require('moment')
 
 var pool = mysql.createPool({
     connectionLimit:5,
@@ -24,7 +25,7 @@ router.get('/list',function(req,res,next){
             console.log('board1 connection')
             if(err) console.log('err : ',err)
             console.log('board1 rows : ',rows)
-            res.render('board1/list',{rows: rows?rows:{} })
+            res.render('board1/list',{rows: rows?rows:{}, moment:moment })
             connection.release()
         })
     })
