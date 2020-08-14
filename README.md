@@ -25,3 +25,7 @@ sequelize init
 
 npm install -g nodemon  //서버 자동 재시작
 
+npm install --save body-parser
+
+
+

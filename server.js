@@ -1,11 +1,13 @@
 
 const express = require('express')
 const app = express()
-const router = require('./router/main')(app)
+//var router = express.Router()
+const mainrouter = require('./router/main')(app)
 const chatRouter = require('./chatting0805')
 const db_config = require('./database')
 const mysql = require('mysql')
 const { connect } = require('./database')
+var bodyparser = require('body-parser')
 
 
 const port = 8089
@@ -19,14 +21,24 @@ app.set('view engine','ejs')
 //db_config.connect()
 app.engine('html',require('ejs').renderFile)
 /**css */
-//app.use(express.static('public'))
 app.use(express.static(__dirname+'/public'))
-
+//app.use(express.static(path.join(__dirname,'/public')))
 //app.use(express.static('chat_index0805'))
 /**db */
 db_config.connect(conn)
 
+app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({extended:true}))
+const board1Router = require('./router/board1')
+app.use('/board1',board1Router)
+//app.use('/',chatRouter)
 
+    /**크로스도메인 */
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 
 // const session = require('express-session')
@@ -46,21 +58,6 @@ db_config.connect(conn)
 // }))
 
 
-
-
-
-app.post('/',function(req, res){
-    var query = connect.query('select STADIUM_NAME from stadium',function(err,rows){
-        if(err) throw err
-        if(rows[0]){
-            console.log('데이터 조회 : '+rows[0])
-        }
-    })
-})
-
-
-
 var server = app.listen(port,function(){
     console.log('port ',port)
 })
-
